@@ -1,0 +1,11 @@
+# Always extract audio
+-x
+--yes-playlist
+-o ~/Music/%(title)s.%(ext)s
+--audio-format 'mp3'
+--audio-quality 0
+--add-metadata
+
+#--write-thumbnail
+--embed-thumbnail
+#--write-all-thumbnails

@@ -1,0 +1,8 @@
+# Always extract audio
+-x
+-i
+--yes-playlist
+-o ~/Music/%(title)s.%(ext)s
+--audio-format 'mp3'
+--audio-quality 0
+--add-metadata
