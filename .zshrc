@@ -100,12 +100,12 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
-alias nvim_config='~/.config/nvim/'
-alias source='~/Documents/source/'
+alias nvim_cfg='~/.config/nvim/'
 alias download_music='python /home/frainx8/.local/lib/python3*/site-packages/youtube_dl/__main__.py --config-location ~/config/youtube-dl/mp3_config'
 alias uPassport='umount /run/media/frainx8/My\ Passport'
 alias ls='nnn -de'
 #alias full_packup=rsync -aAXHv --exclude={"/dev/*","/proc/*","/sys/*","/tmp/*","/run/*","/mnt/*","/media/*","/lost+found", "home/*/.thumbnails/*", "/home/*/.cache/mozilla/*", "/home/*/.local/share/Trash/*", "/home/Downloads/*"} /path/to/backup/date/time 
+export PATH="$PATH:/home/frainx8/.dotnet/tools"
 # NNN on quit
 n ()
 {
