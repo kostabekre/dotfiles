@@ -2,6 +2,8 @@ alias ls='nnn -de'
 n ()
 {
     export EDITOR=nvim
+    export NNN_FIFO=/tmp/nnn.fifo
+
     # Block nesting of nnn in subshells
     if [[ "${NNNLVL:-0}" -ge 1 ]]; then
         echo "nnn is already running"
@@ -32,3 +34,4 @@ n ()
 }
 
 export NNN_BMS="p:/run/media/frainx8/My Passport/;"
+export NNN_PLUG='f:finder;o:fzopen;p:preview-tabbed;d:diffs;t:nmount;v:imgview'

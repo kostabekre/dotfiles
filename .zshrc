@@ -91,52 +91,15 @@ source $ZSH/oh-my-zsh.sh
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
 
-# Set personal aliases, overriding those provided by oh-my-zsh libs,
-# plugins, and themes. Aliases can be placed here, though oh-my-zsh
-# users are encouraged to define aliases within the ZSH_CUSTOM folder.
-# For a full list of active aliases, run `alias`.
-#
-# Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
-alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
-alias nvim_cfg='~/.config/nvim/'
-alias download_music='python /home/frainx8/.local/lib/python3*/site-packages/youtube_dl/__main__.py --config-location ~/config/youtube-dl/mp3_config'
-alias uPassport='umount /run/media/frainx8/My\ Passport'
-alias ls='nnn -de'
-#alias full_packup=rsync -aAXHv --exclude={"/dev/*","/proc/*","/sys/*","/tmp/*","/run/*","/mnt/*","/media/*","/lost+found", "home/*/.thumbnails/*", "/home/*/.cache/mozilla/*", "/home/*/.local/share/Trash/*", "/home/Downloads/*"} /path/to/backup/date/time 
-export PATH="$PATH:/home/frainx8/.dotnet/tools"
-# NNN on quit
-n ()
-{
-    export EDITOR=nvim
-    # Block nesting of nnn in subshells
-    if [[ "${NNNLVL:-0}" -ge 1 ]]; then
-        echo "nnn is already running"
-        return
-    fi
 
-    # The behaviour is set to cd on quit (nnn checks if NNN_TMPFILE is set)
-    # If NNN_TMPFILE is set to a custom path, it must be exported for nnn to
-    # see. To cd on quit only on ^G, remove the "export" and make sure not to
-    # use a custom path, i.e. set NNN_TMPFILE *exactly* as follows:
-    #     NNN_TMPFILE="${XDG_CONFIG_HOME:-$HOME/.config}/nnn/.lastd"
-    export NNN_TMPFILE="${XDG_CONFIG_HOME:-$HOME/.config}/nnn/.lastd"
+if [ -f ~/.zsh/vars ]; then
+    source ~/.zsh/vars
+fi
 
-    # Unmask ^Q (, ^V etc.) (if required, see `stty -a`) to Quit nnn
-    # stty start undef
-    # stty stop undef
-    # stty lwrap undef
-    # stty lnext undef
+if [ -f ~/.zsh/nnn ]; then
+    source ~/.zsh/nnn
+fi
 
-    # The backslash allows one to alias n to nnn if desired without making an
-    # infinitely recursive alias
-    \nnn "$@" -x
-
-    if [ -f "$NNN_TMPFILE" ]; then
-            . "$NNN_TMPFILE"
-            rm -f "$NNN_TMPFILE" > /dev/null
-    fi
-}
-
-export NNN_BMS="p:/run/media/frainx8/My Passport/;"
+if [ -f ~/.zsh/nvim ]; then
+    source ~/.zsh/nvim
+fi

@@ -17,20 +17,9 @@ set $menu rofi -show drun exec --
 #
 ### Sceen configuration
 #
-output HDMI1 pos 0 0
-output eDP1 pos 1920 0
+exec swaymsg "output HDMI-A-1 pos 0 0"
+exec swaymsg "output eDP-1 pos 1920 0"
 #
-### Idle configuration
-#
-exec swayidle -w \
-         timeout 300 'swaylock -f -c 000000' \
-         timeout 600 'swaymsg "output * power off"' resume 'swaymsg "output * power on"' \
-         before-sleep 'swaylock -f -c 000000'
-#
-# This will lock your screen after 300 seconds of inactivity, then turn off
-# your displays after another 300 seconds, and turn your screens back on when
-# resumed. It will also lock your screen before your computer goes to sleep.
-
 ### Key bindings
 #
 # Basics:
@@ -60,8 +49,8 @@ bindsym $mod+Shift+c reload
 mode "exit: [l]ock, [s]leep, [r]eboot, shift+[s]hutdown, shift+[l]ogout" {
     bindsym shift+l exec swaymsg exit
     bindsym r exec reboot
-    bindsym shift+s exec shutdown 0
-    bindsym l exec swaylock -f -e; mode "default"
+    bindsym shift+s exec shutdown --poweroff 0
+    bindsym l exec swaylock -f -e -i "~/Pictures/Login/cover.png"; mode "default"
     bindsym s exec systemctl suspend; mode "default"
 
     bindsym Escape mode "default"
@@ -74,6 +63,8 @@ bindsym $mod+Shift+e mode "exit: [l]ock, [s]leep, [r]eboot, shift+[s]hutdown, sh
 #
     # Move your focus around
     bindsym $mod+$left focus left
+    # Easy switch with one hand 
+    bindsym $mod+Tab focus left
     bindsym $mod+$down focus down
     bindsym $mod+$up focus up
     bindsym $mod+$right focus right
@@ -182,19 +173,26 @@ mode "resize" {
 }
 bindsym $mod+r mode "resize"
 
+# #
+# # Keyboard
+# #
+# input type:keyboard {
+#         xkb_layout us,ru
+# }
+# bindsym --locked ctrl+space input type:keyboard xkb_switch_layout next 
+
 #
-# Keyboard
-#
-input type:keyboard {
-        xkb_layout us,ru
-}
-bindsym --locked ctrl+space input type:keyboard xkb_switch_layout next 
+# Assignment
+# 
+
+assign [app_id="telegram-desktop_telegram-desktop"] workspace number 9
+assign [class="qBittorrent"] workspace number 10
 
 #
 # Autostart
 #
 
-exec gammastep
+exec "gammastep -m wayland -t 6500:3500"
 exec udiskie
 exec fcitx5
 exec syncthing
@@ -203,6 +201,8 @@ exec qbittorrent
 # Background
 #
 exec swaybg  -m center -i ~/Pictures/Wallpaper/vqt4fvzjca4a1.jpg -c "#000000"
+
+for_window [app_id="galculator"] floating enable, border normal, move position cursor
 
 # Include configs from 3 locations:
 #  - /usr/share/sway/config.d
