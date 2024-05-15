@@ -2,8 +2,9 @@
 
 ### Variables
 #
-# Logo key. Use Mod1 for Alt.
-set $mod Mod4
+# Logo key. Use Mod1 for Alt, Mod4 for win key
+set $mod Mod1
+set $mod2 Mod4
 # Home row direction keys, like vim
 set $left h
 set $down j
@@ -12,13 +13,13 @@ set $right l
 # Your preferred terminal emulator
 set $term alacritty
 # Your preferred application launcher
-set $menu rofi -show drun exec --
+set $menu rofi -theme lb -show  drun exec --
 
 #
 ### Sceen configuration
 #
-exec swaymsg "output HDMI-A-1 pos 0 0"
-exec swaymsg "output eDP-1 pos 1920 0"
+output eDP-1 position 0 0
+output HDMI-A-1 position 1920 0
 #
 ### Key bindings
 #
@@ -50,7 +51,7 @@ mode "exit: [l]ock, [s]leep, [r]eboot, shift+[s]hutdown, shift+[l]ogout" {
     bindsym shift+l exec swaymsg exit
     bindsym r exec reboot
     bindsym shift+s exec shutdown --poweroff 0
-    bindsym l exec swaylock -f -e -i "~/Pictures/Login/cover.png"; mode "default"
+    bindsym l exec bash ~/.config/swaylock/lock.sh; mode "default"
     bindsym s exec systemctl suspend; mode "default"
 
     bindsym Escape mode "default"
@@ -61,11 +62,17 @@ bindsym $mod+Shift+e mode "exit: [l]ock, [s]leep, [r]eboot, shift+[s]hutdown, sh
 #
 # Moving around:
 #
+    # Easy switch with one hand 
+    bindsym $mod+Tab focus right
+    bindsym $mod+Shift+Tab focus left
+
+    bindsym $mod2+a focus left
+    bindsym $mod2+s focus down
+    bindsym $mod2+w focus up
+    bindsym $mod2+d focus right
+
     # Move your focus around
     bindsym $mod+$left focus left
-    # Easy switch with one hand 
-    bindsym $mod+Tab focus left
-    bindsym $mod+Shift+Tab focus right
     bindsym $mod+$down focus down
     bindsym $mod+$up focus up
     bindsym $mod+$right focus right
@@ -88,20 +95,21 @@ bindsym $mod+Shift+e mode "exit: [l]ock, [s]leep, [r]eboot, shift+[s]hutdown, sh
 #
 # Workspaces:
 #
-    set $ws1 [Firefox]
-    set $ws2 [Code]
-    set $ws3 [Anki]
-    set $ws4 [Calibre]
-    set $ws5 [Music]
-    set $ws9 [Telelgram]
-    set $ws10 [Torrents]
+    set $ws1 [01 Firefox]
+    set $ws2 [02 Code]
+    set $ws3 [03 Anki]
+    set $ws4 [04 Books]
+    set $ws5 [05 Music]
+    set $ws6 [06 Notes]
+    set $ws9 [09 Telelgram]
+    set $ws10 [10 Torrents]
     # Switch to workspace
     bindsym $mod+1 workspace $ws1
     bindsym $mod+2 workspace $ws2
     bindsym $mod+3 workspace $ws3
     bindsym $mod+4 workspace $ws4
     bindsym $mod+5 workspace $ws5
-    bindsym $mod+6 workspace number 6
+    bindsym $mod+6 workspace $ws6
     bindsym $mod+7 workspace number 7
     bindsym $mod+8 workspace number 8
     bindsym $mod+9 workspace $ws9
@@ -112,7 +120,7 @@ bindsym $mod+Shift+e mode "exit: [l]ock, [s]leep, [r]eboot, shift+[s]hutdown, sh
     bindsym $mod+Shift+3 move container to workspace $ws3
     bindsym $mod+Shift+4 move container to workspace $ws4
     bindsym $mod+Shift+5 move container to workspace $ws5
-    bindsym $mod+Shift+6 move container to workspace number 6
+    bindsym $mod+Shift+6 move container to workspace $ws6
     bindsym $mod+Shift+7 move container to workspace number 7
     bindsym $mod+Shift+8 move container to workspace number 8
     bindsym $mod+Shift+9 move container to workspace $ws9
@@ -137,7 +145,7 @@ bindsym $mod+Shift+e mode "exit: [l]ock, [s]leep, [r]eboot, shift+[s]hutdown, sh
     bindsym $mod+f fullscreen
 
     # Toggle the current focus between tiling and floating mode
-    bindsym $mod+Shift+t floating toggle
+    bindsym $mod+space floating toggle
 
     # Swap focus between the tiling area and the floating area
     bindsym $mod+t focus mode_toggle
@@ -185,24 +193,36 @@ bindsym $mod+r mode "resize"
 # Assignment
 # 
 
-assign [app_id="telegram-desktop_telegram-desktop"] workspace $ws9
+assign [class="TelegramDesktop"] workspace $ws9
 assign [class="qBittorrent"] workspace $ws10
 
 #
 # Autostart
 #
 
+bindsym $mod+Shift+v exec "~/.vim-anywhere/bin/run"
+
+# Nightlight
 exec "gammastep -m wayland -t 6500:3500"
 exec udiskie
 exec fcitx5
+# sync things
 exec syncthing
-exec qbittorrent
+
+exec ~/Documents/qbittorrent_delay_startup.zsh
 #
 # Background
 #
 exec swaybg  -m center -i ~/Pictures/Wallpaper/vqt4fvzjca4a1.jpg -c "#000000"
 
+# Calculator
 for_window [app_id="galculator"] floating enable, border normal, move position cursor
+
+
+# bar {
+#     position top
+#     swaybar_command waybar
+# }
 
 # Include configs from 3 locations:
 #  - /usr/share/sway/config.d
@@ -225,4 +245,5 @@ for_window [app_id="galculator"] floating enable, border normal, move position c
 # important to make the magic work. And if you want to learn the secret behind
 # the trick, it's all in the `wordexp(3)`.
 #
-include '$(/usr/libexec/sway/layered-include "/usr/share/sway/config.d/*.conf" "/etc/sway/config.d/*.conf" "${XDG_CONFIG_HOME:-$HOME/.config}/sway/config.d/*.conf")'
+# include '$(/usr/libexec/sway/layered-include "/usr/share/sway/config.d/*.conf" "/etc/sway/config.d/*.conf" "${XDG_CONFIG_HOME:-$HOME/.config}/sway/config.d/*.conf")'
+include ~/.config/sway/config.d/*

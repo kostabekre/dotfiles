@@ -1,4 +1,5 @@
 alias nvim-omni="NVIM_APPNAME=OmnisharpNvim nvim"
+alias nvim-unity="NVIM_APPNAME=nvim_unity nvim"
 
 function nvims() {
     items=("default" "Omnisharp")

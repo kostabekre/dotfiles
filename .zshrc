@@ -103,3 +103,6 @@ fi
 if [ -f ~/.zsh/nvim ]; then
     source ~/.zsh/nvim
 fi
+if [ -f ~/.zsh/home_server ]; then
+    source ~/.zsh/home_server
+fi
