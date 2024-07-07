@@ -3,6 +3,11 @@
 " You can find a list of commands here: https://jb.gg/h38q75
 " Find more examples here: https://jb.gg/share-ideavimrc
 
+" define
+" default
+" redefine
+" definitive
+
 let mapleader = " "
 
 " Paste without copy
@@ -33,20 +38,24 @@ map <leader>l V<Action>(ReformatCode)
 " used by buffers
 " map <leader>b <Action>(ToggleLineBreakpoint)
 map <leader>o <Action>(FileStructurePopup)
+map <leader>i <Action>(ShowHoverInfo)
+map <leader>k <Action>(QuickJavaDoc)
+map <leader>e <Action>(ShowErrorDescription)
+map <leader>j <Action>(ParameterInfo)
 
-" Harpoon 
-nmap <leader><C-h> :action SetHarpoon1<cr>
-nmap <leader><C-t> :action SetHarpoon2<cr>
-nmap <leader><C-n> :action SetHarpoon3<cr>
-nmap <leader><C-s> :action SetHarpoon4<cr>
+" harpoon 
+nmap <leader><C-h> <Action>(SetHarpoon1)
+nmap <leader><C-g> <Action>(SetHarpoon2)
+nmap <leader><C-l> <Action>(SetHarpoon3)
+nmap <leader><C-s> <Action>(SetHarpoon4)
 
-nmap <C-h> :action GotoHarpoon1<cr>
-nmap <C-t> :action GotoHarpoon2<cr>
-nmap <C-n> :action GotoHarpoon3<cr>
-nmap <C-s> :action GotoHarpoon4<cr>
+nmap <C-h> <Action>(GotoHarpoon1)
+nmap <C-g> <Action>(GotoHarpoon2)
+nmap <C-l> <Action>(GotoHarpoon3)
+nmap <C-s> <Action>(GotoHarpoon4)
 
-nmap <C-e> :action ShowHarpoon<cr>
-nmap <C-a> :action AddToHarpoon<cr>
+nmap <C-e> <Action>(ShowHarpoon)
+nmap <C-a> <Action>(AddToHarpoon)
 
 "" -- Suggested options --
 " Show a few lines of context around the cursor. Note that this makes the
@@ -73,9 +82,18 @@ set argtextobj
 Plug 'machakann/vim-highlightedyank'
 
 " My custom mappings
-nmap <leader>ff :action SearchEverywhere<cr>
-nnoremap <Leader>b :buffers<CR>:buffer<Space>
-nnoremap <Leader>bp :buffers<CR>:buffer#<cr>
+nmap <leader>ff <Action>(SearchEverywhere)
+nnoremap <Leader>bb :buffers<CR>
+nnoremap <Leader>bp :buffer#<cr>
+nnoremap <Leader>b1 :buffer1<cr>
+nnoremap <Leader>b2 :buffer2<cr>
+nnoremap <Leader>b3 :buffer3<cr>
+nnoremap <Leader>b4 :buffer4<cr>
+nnoremap <Leader>b5 :buffer5<cr>
+nnoremap <Leader>b6 :buffer6<cr>
+nnoremap <Leader>b7 :buffer7<cr>
+nnoremap <Leader>b8 :buffer8<cr>
+nnoremap <Leader>b9 :buffer9<cr>
 nnoremap <Leader>vc :e~/.ideavimrc<cr>
 nnoremap dim :action MethodUp<cr>f{vi{d
 nnoremap dam :action MethodUp<cr>v0Of{%d
