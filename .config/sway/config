@@ -1,4 +1,3 @@
-# Read `man 5 sway` for the sway config reference.
 
 ### Variables
 #
@@ -66,11 +65,6 @@ bindsym $mod+Shift+e mode "exit: [l]ock, [s]leep, [r]eboot, shift+[s]hutdown, sh
     bindsym $mod+Tab focus right
     bindsym $mod+Shift+Tab focus left
 
-    bindsym $mod2+a focus left
-    bindsym $mod2+s focus down
-    bindsym $mod2+w focus up
-    bindsym $mod2+d focus right
-
     # Move your focus around
     bindsym $mod+$left focus left
     bindsym $mod+$down focus down
@@ -95,14 +89,20 @@ bindsym $mod+Shift+e mode "exit: [l]ock, [s]leep, [r]eboot, shift+[s]hutdown, sh
 #
 # Workspaces:
 #
-    set $ws1 [01 Firefox]
-    set $ws2 [02 Code]
-    set $ws3 [03 Anki]
-    set $ws4 [04 Books]
-    set $ws5 [05 Music]
-    set $ws6 [06 Notes]
-    set $ws9 [09 Telelgram]
-    set $ws10 [10 Torrents]
+    set $ws1 [Firefox]
+    workspace $ws1 output HDMI-A-1
+    set $ws2 [Email]
+    workspace $ws2 output eDP-1
+    set $ws3 [Code]
+    workspace $ws3 output HDMI-A-1
+    set $ws4 [Notes]
+    workspace $ws4 output eDP-1
+    set $ws5 [Books]
+    workspace $ws5 output HDMI-A-1
+    set $ws6 [06]
+    set $ws9 [Telegram]
+    workspace $ws9 output eDP-1
+    set $ws10 [10]
     # Switch to workspace
     bindsym $mod+1 workspace $ws1
     bindsym $mod+2 workspace $ws2
@@ -193,6 +193,11 @@ bindsym $mod+r mode "resize"
 # Assignment
 # 
 
+assign [class="org.mozilla.firefox"] workspace $ws1
+assign [class="chromium-browser"] workspace $ws1
+
+assign [class="jetbrains-rider"] workspace $ws3
+assign [class="obsidian"] workspace $ws4
 assign [class="TelegramDesktop"] workspace $ws9
 assign [class="qBittorrent"] workspace $ws10
 
@@ -209,7 +214,6 @@ exec fcitx5
 # sync things
 exec syncthing
 
-exec ~/Documents/qbittorrent_delay_startup.zsh
 #
 # Background
 #
