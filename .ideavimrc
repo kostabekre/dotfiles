@@ -7,11 +7,13 @@ let mapleader = " "
 
 " Paste without copy
 map <leader>p "_dP
+" Paste from system
+map <leader>P "+p <ESC>
 " Remove without copy
 map <leader>d "_d
 
+" Copy to System
 map <leader>y "+y <ESC>
-map <leader>yy "+yy <ESC>
 
 map <leader>r <Action>(RenameElement)
 map <leader>gr <Action>(FindUsages)
