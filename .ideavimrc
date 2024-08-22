@@ -3,11 +3,6 @@
 " You can find a list of commands here: https://jb.gg/h38q75
 " Find more examples here: https://jb.gg/share-ideavimrc
 
-" define
-" default
-" redefine
-" definitive
-
 let mapleader = " "
 
 " Paste without copy
@@ -21,6 +16,7 @@ map <leader>yy "+yy <ESC>
 map <leader>r <Action>(RenameElement)
 map <leader>gr <Action>(FindUsages)
 map <leader>gi <Action>(GotoImplementation)
+map <leader>gt <Action>(GotoTypeDeclaration)
 map <leader>c <Action>(Stop)
 
 map <leader>s <Action>(SelectInProjectView)
@@ -78,8 +74,7 @@ set argtextobj
 " set textobj-entire
 " set ReplaceWithRegister
 " set exchange
-" Highlight copied text
-Plug 'machakann/vim-highlightedyank'
+Plug 'machakann/vim-highlightedyank' " highlight copied text
 
 " My custom mappings
 nmap <leader>ff <Action>(SearchEverywhere)
