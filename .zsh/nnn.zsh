@@ -35,5 +35,4 @@ n ()
     fi
 }
 
-export NNN_BMS="p:/mnt/home_server_passport/_base/Torrents/;d:/home/frainx8/Downloads/;"
 export NNN_PLUG='f:finder;o:fzopen;p:preview-tabbed;d:diffs;t:nmount;v:imgview'

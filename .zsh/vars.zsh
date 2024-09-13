@@ -1,9 +1,3 @@
-alias download_music='python /home/frainx8/.local/lib/python3*/site-packages/youtube_dl/__main__.py --config-location ~/.config/youtube-dl/mp3_config'
-#alias full_packup=rsync -aAXHv --exclude={"/dev/*","/proc/*","/sys/*","/tmp/*","/run/*","/mnt/*","/media/*","/lost+found", "home/*/.thumbnails/*", "/home/*/.cache/mozilla/*", "/home/*/.local/share/Trash/*", "/home/Downloads/*"} /path/to/backup/date/time 
-alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
-alias nvim_cfg='~/.config/nvim/'
-alias copy_file="rsync -av --progress"
-
 # Language, Keyboard
 export GTK_IM_MODULE=fcitx
 export QT_IM_MODULE=fcitx
@@ -11,4 +5,3 @@ export XMODIFIERS=@im=fcitx
 export GLFW_IM_MODULE=fcitx
 export SDL_IM_MODULE=fcitx
 export QT_QPA_PLATFORM=xcb
-export EDITOR=nvim

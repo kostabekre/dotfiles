@@ -92,6 +92,7 @@ source $ZSH/oh-my-zsh.sh
 # export ARCHFLAGS="-arch x86_64"
 
 export SYSTEMD_EDITOR=nvim
+export EDITOR=nvim
 
 if [ -f ~/.zsh/vars.zsh ]; then
     source ~/.zsh/vars.zsh
@@ -109,4 +110,10 @@ if [ -f ~/.zsh/home_server.zsh ]; then
 fi
 if [ -f ~/.zsh/dotnet.zsh ]; then
     source ~/.zsh/dotnet.zsh
+fi
+if [ -f ~/.zsh/nnn_bookmarks.zsh ]; then
+    source ~/.zsh/nnn_bookmarks.zsh
+fi
+if [ -f ~/.zsh/useful_aliases.zsh ]; then
+    source ~/.zsh/useful_aliases.zsh
 fi
