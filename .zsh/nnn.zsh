@@ -1,7 +1,9 @@
-alias ls='nnn -de'
+alias N='sudo -E nnn -dH -A'
+
+alias nnn='nnn -A'
+alias ls='nnn -de -A'
 n ()
 {
-    export EDITOR=nvim
     export NNN_FIFO=/tmp/nnn.fifo
 
     # Block nesting of nnn in subshells
@@ -25,7 +27,7 @@ n ()
 
     # The backslash allows one to alias n to nnn if desired without making an
     # infinitely recursive alias
-    \nnn "$@" -x
+    \nnn "$@" -x -A
 
     if [ -f "$NNN_TMPFILE" ]; then
             . "$NNN_TMPFILE"
@@ -33,5 +35,5 @@ n ()
     fi
 }
 
-export NNN_BMS="p:/run/media/frainx8/My Passport/;"
+export NNN_BMS="p:/mnt/home_server_passport/_base/Torrents/;d:/home/frainx8/Downloads/;"
 export NNN_PLUG='f:finder;o:fzopen;p:preview-tabbed;d:diffs;t:nmount;v:imgview'

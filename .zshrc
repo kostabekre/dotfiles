@@ -91,18 +91,22 @@ source $ZSH/oh-my-zsh.sh
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
 
+export SYSTEMD_EDITOR=nvim
 
-if [ -f ~/.zsh/vars ]; then
-    source ~/.zsh/vars
+if [ -f ~/.zsh/vars.zsh ]; then
+    source ~/.zsh/vars.zsh
 fi
 
-if [ -f ~/.zsh/nnn ]; then
-    source ~/.zsh/nnn
+if [ -f ~/.zsh/nnn.zsh ]; then
+    source ~/.zsh/nnn.zsh
 fi
 
-if [ -f ~/.zsh/nvim ]; then
-    source ~/.zsh/nvim
+if [ -f ~/.zsh/nvim.zsh ]; then
+    source ~/.zsh/nvim.zsh
 fi
-if [ -f ~/.zsh/home_server ]; then
-    source ~/.zsh/home_server
+if [ -f ~/.zsh/home_server.zsh ]; then
+    source ~/.zsh/home_server.zsh
+fi
+if [ -f ~/.zsh/dotnet.zsh ]; then
+    source ~/.zsh/dotnet.zsh
 fi
