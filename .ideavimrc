@@ -84,9 +84,10 @@ Plug 'machakann/vim-highlightedyank' " highlight copied text
 
 " My custom mappings
 nmap <leader>ff <Action>(SearchEverywhere)
-nnoremap <leader>bb :buffers<CR>
+nmap <leader>bb <Action>(RecentFiles)
+" nnoremap <leader>bb :buffers<CR>
 nnoremap <leader>bp :buffer#<cr>
-nnoremap <leader>bn :bnext<cr>
+" nnoremap <leader>bn :bnext<cr>
 nnoremap <leader>vc :e~/.ideavimrc<cr>
 nnoremap dim :action MethodUp<cr>f{vi{d
 nnoremap dam :action MethodUp<cr>v0Of{%d
