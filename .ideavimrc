@@ -1,7 +1,6 @@
-" .ideavimrc is a configuration file for IdeaVim plugin. It uses
-"   the same commands as the original .vimrc configuration.
 " You can find a list of commands here: https://jb.gg/h38q75
 " Find more examples here: https://jb.gg/share-ideavimrc
+" List actions: :actionlist
 
 let mapleader = " "
 
@@ -23,7 +22,7 @@ map <leader>c <Action>(Stop)
 
 map <leader>s <Action>(SelectInProjectView)
 " Shows git history line by line
-map <leader>a <Action>(Annotate)
+map <leader>an <Action>(Annotate)
 " Shows git history
 map <leader>h <Action>(Vcs.ShowTabbedFileHistory)
 map <S-Space> <Action>(GotoNextError)
@@ -55,6 +54,10 @@ nmap <C-s> <Action>(GotoHarpoon4)
 nmap <C-e> <Action>(ShowHarpoon)
 nmap <C-a> <Action>(AddToHarpoon)
 
+" bookmark
+nmap <leader>ba <Action>(ToggleBookmark)
+nmap <leader>bs <Action>(ShowBookmarks)
+
 "" -- Suggested options --
 " Show a few lines of context around the cursor. Note that this makes the
 " text scroll if you mouse-click near the start or end of the window.
@@ -76,21 +79,15 @@ set argtextobj
 " set textobj-entire
 " set ReplaceWithRegister
 " set exchange
+set NERDTree
 Plug 'machakann/vim-highlightedyank' " highlight copied text
 
 " My custom mappings
 nmap <leader>ff <Action>(SearchEverywhere)
-nnoremap <Leader>bb :buffers<CR>
-nnoremap <Leader>bp :buffer#<cr>
-nnoremap <Leader>b1 :buffer1<cr>
-nnoremap <Leader>b2 :buffer2<cr>
-nnoremap <Leader>b3 :buffer3<cr>
-nnoremap <Leader>b4 :buffer4<cr>
-nnoremap <Leader>b5 :buffer5<cr>
-nnoremap <Leader>b6 :buffer6<cr>
-nnoremap <Leader>b7 :buffer7<cr>
-nnoremap <Leader>b8 :buffer8<cr>
-nnoremap <Leader>b9 :buffer9<cr>
-nnoremap <Leader>vc :e~/.ideavimrc<cr>
+nmap <leader>bb <Action>(RecentFiles)
+" nnoremap <leader>bb :buffers<CR>
+nnoremap <leader>bp :buffer#<cr>
+" nnoremap <leader>bn :bnext<cr>
+nnoremap <leader>vc :e~/.ideavimrc<cr>
 nnoremap dim :action MethodUp<cr>f{vi{d
 nnoremap dam :action MethodUp<cr>v0Of{%d
