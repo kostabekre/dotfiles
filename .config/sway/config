@@ -19,6 +19,20 @@ set $menu rofi -theme lb -show  drun exec --
 #
 output eDP-1 position 0 0
 output HDMI-A-1 position 1920 0
+
+#bindsym $mod+m output "HDMI-A-1" enable ; output "eDP-1" disable
+#
+# monitor modes
+#
+mode "Monitors: [m]ain only, [s]econd only, [b]oth"  {
+    bindsym s exec output "HDMI-A-1" enable; output "eDP-1" disable; mode "default"
+    bindsym b exec output "HDMI-A-1" enable; output "eDP-1" enable; mode "default"
+    bindsym m exec output "HDMI-A-1" disable; output "eDP-1" enable; mode "default"
+
+    bindsym Escape mode "default"
+    bindsym Return mode "default"
+}
+bindsym $mod+Shift+m mode "Monitors: [m]ain only, [s]econd only, [b]oth"
 #
 ### Key bindings
 #
@@ -222,7 +236,6 @@ exec swaybg  -m center -i ~/Pictures/Wallpaper/vqt4fvzjca4a1.jpg -c "#000000"
 
 # Calculator
 for_window [app_id="galculator"] floating enable, border normal, move position cursor
-
 
 # bar {
 #     position top

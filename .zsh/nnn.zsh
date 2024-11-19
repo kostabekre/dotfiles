@@ -2,6 +2,7 @@ alias N='sudo -E nnn -dH -A'
 
 alias nnn='nnn -A'
 alias ls='nnn -de -A'
+
 n ()
 {
     export NNN_FIFO=/tmp/nnn.fifo
@@ -36,3 +37,4 @@ n ()
 }
 
 export NNN_PLUG='f:finder;o:fzopen;p:preview-tabbed;d:diffs;t:nmount;v:imgview'
+export NNN_ARCHIVE="\\.(7z|a|ace|alz|arc|arj|bz|bz2|cab|cpio|deb|gz|jar|lha|lz|lzh|lzma|lzo|rar|rpm|rz|t7z|tar|tbz|tbz2|tgz|tlz|txz|tZ|tzo|war|xpi|xz|Z|zip)$"

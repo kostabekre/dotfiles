@@ -117,3 +117,6 @@ fi
 if [ -f ~/.zsh/useful_aliases.zsh ]; then
     source ~/.zsh/useful_aliases.zsh
 fi
+if [ -f ~/.zsh/remote_desk.zsh ]; then
+    source ~/.zsh/remote_desk.zsh
+fi

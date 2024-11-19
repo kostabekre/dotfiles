@@ -2,3 +2,4 @@ alias download_music='python /home/frainx8/.local/lib/python3*/site-packages/you
 alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
 alias nvim_cfg='~/.config/nvim/'
 alias copy_file="rsync -av --progress"
+alias mirror_main_monitor="wl-mirror eDP-1"
