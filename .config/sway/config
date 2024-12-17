@@ -1,51 +1,49 @@
-
+#
 ### Variables
 #
-# Logo key. Use Mod1 for Alt, Mod4 for win key
 set $mod Mod1
 set $mod2 Mod4
-# Home row direction keys, like vim
 set $left h
 set $down j
 set $up k
 set $right l
-# Your preferred terminal emulator
 set $term alacritty
-# Your preferred application launcher
 set $menu rofi -theme lb -show  drun exec --
+# Resolve the issue of multiple layouts
+#set $mybind bindsym --to-code
 
+default_border pixel 1
 #
 ### Sceen configuration
 #
 output eDP-1 position 0 0
 output HDMI-A-1 position 1920 0
 
-#bindsym $mod+m output "HDMI-A-1" enable ; output "eDP-1" disable
 #
 # monitor modes
 #
 mode "Monitors: [m]ain only, [s]econd only, [b]oth"  {
-    bindsym s exec output "HDMI-A-1" enable; output "eDP-1" disable; mode "default"
-    bindsym b exec output "HDMI-A-1" enable; output "eDP-1" enable; mode "default"
-    bindsym m exec output "HDMI-A-1" disable; output "eDP-1" enable; mode "default"
+    bindsym --to-code s exec output "HDMI-A-1" enable; output "eDP-1" disable; mode "default"
+    bindsym --to-code b exec output "HDMI-A-1" enable; output "eDP-1" enable; mode "default"
+    bindsym --to-code m exec output "HDMI-A-1" disable; output "eDP-1" enable; mode "default"
 
-    bindsym Escape mode "default"
-    bindsym Return mode "default"
+    bindsym --to-code Escape mode "default"
+    bindsym --to-code Return mode "default"
 }
-bindsym $mod+Shift+m mode "Monitors: [m]ain only, [s]econd only, [b]oth"
+bindsym --to-code $mod+Shift+m mode "Monitors: [m]ain only, [s]econd only, [b]oth"
 #
 ### Key bindings
 #
 # Basics:
 #
 # Start a terminal
-bindsym $mod+Return exec $term
+bindsym --to-code $mod+Return exec $term
 
 # Kill focused window
-bindsym $mod+Shift+q kill
+bindsym --to-code $mod+Shift+q kill
 
 # Start your launcher
-bindsym $mod+d exec $menu
+bindsym --to-code $mod+d exec $menu
 
 # Drag floating windows by holding down $mod and left mouse button.
 # Resize them with right mouse button + $mod.
@@ -55,117 +53,167 @@ bindsym $mod+d exec $menu
 floating_modifier $mod normal
 
 # reload the configuration file
-bindsym $mod+Shift+c reload
+bindsym --to-code $mod+Shift+c reload
 
 #
 # Exit modes
 #
 mode "exit: [l]ock, [s]leep, [r]eboot, shift+[s]hutdown, shift+[l]ogout" {
-    bindsym shift+l exec swaymsg exit
-    bindsym r exec reboot
-    bindsym shift+s exec shutdown --poweroff 0
-    bindsym l exec bash ~/.config/swaylock/lock.sh; mode "default"
-    bindsym s exec systemctl suspend; mode "default"
+    bindsym --to-code shift+l exec swaymsg exit
+    bindsym --to-code r exec reboot
+    bindsym --to-code shift+s exec shutdown --poweroff 0
+    bindsym --to-code l exec bash ~/.config/swaylock/lock.sh; mode "default"
+    bindsym --to-code s exec systemctl suspend; mode "default"
 
-    bindsym Escape mode "default"
-    bindsym Return mode "default"
+    bindsym --to-code Escape mode "default"
+    bindsym --to-code Return mode "default"
 }
-bindsym $mod+Shift+e mode "exit: [l]ock, [s]leep, [r]eboot, shift+[s]hutdown, shift+[l]ogout"
+bindsym --to-code $mod+Shift+e mode "exit: [l]ock, [s]leep, [r]eboot, shift+[s]hutdown, shift+[l]ogout"
 
 #
 # Moving around:
 #
-    # Easy switch with one hand 
-    bindsym $mod+Tab focus right
-    bindsym $mod+Shift+Tab focus left
-
     # Move your focus around
-    bindsym $mod+$left focus left
-    bindsym $mod+$down focus down
-    bindsym $mod+$up focus up
-    bindsym $mod+$right focus right
+    bindsym --to-code $mod+$left focus left
+    bindsym --to-code $mod+$down focus down
+    bindsym --to-code $mod+$up focus up
+    bindsym --to-code $mod+$right focus right
     # Or use $mod+[up|down|left|right]
-    bindsym $mod+Left focus left
-    bindsym $mod+Down focus down
-    bindsym $mod+Up focus up
-    bindsym $mod+Right focus right
+    bindsym --to-code $mod+Left focus left
+    bindsym --to-code $mod+Down focus down
+    bindsym --to-code $mod+Up focus up
+    bindsym --to-code $mod+Right focus right
 
     # Move the focused window with the same, but add Shift
-    bindsym $mod+Shift+$left move left
-    bindsym $mod+Shift+$down move down
-    bindsym $mod+Shift+$up move up
-    bindsym $mod+Shift+$right move right
+    bindsym --to-code $mod+Shift+$left move left
+    bindsym --to-code $mod+Shift+$down move down
+    bindsym --to-code $mod+Shift+$up move up
+    bindsym --to-code $mod+Shift+$right move right
     # Ditto, with arrow keys
-    bindsym $mod+Shift+Left move left
-    bindsym $mod+Shift+Down move down
-    bindsym $mod+Shift+Up move up
-    bindsym $mod+Shift+Right move right
+    bindsym --to-code $mod+Shift+Left move left
+    bindsym --to-code $mod+Shift+Down move down
+    bindsym --to-code $mod+Shift+Up move up
+    bindsym --to-code $mod+Shift+Right move right
 #
 # Workspaces:
 #
+
+
     set $ws1 [Firefox]
     workspace $ws1 output HDMI-A-1
+    assign [class="org.mozilla.firefox"] workspace $ws1
+
     set $ws2 [Terminals]
     workspace $ws2 output eDP-1
+
     set $ws3 [Code]
     workspace $ws3 output HDMI-A-1
+    assign [class="jetbrains-rider"] workspace $ws3
+
     set $ws4 [Notes]
     workspace $ws4 output eDP-1
+    assign [class="obsidian"] workspace $ws4
+
     set $ws5 [Books]
     workspace $ws5 output HDMI-A-1
+
     set $ws6 [06]
+
+    set $ws7 [Music]
+    workspace $ws7 output eDP-1
+
+    set $ws8 [08]
+
     set $ws9 [Telegram]
     workspace $ws9 output eDP-1
+    assign [class="TelegramDesktop"] workspace $ws9
+
     set $ws10 [10]
+    assign [class="qBittorrent"] workspace $ws10
+
+    set $wsF1  [Work]
+    workspace $wsF1 output HDMI-A-1
+    assign [class="Chromium-browser"] workspace $wsF1
+
+    set $wsF2  [Email]
+    workspace $wF2 output eDP-1
+    assign [app_id="org.mozilla.thunderbird"] workspace $wsF2
+
+    set $wsF3  [RDP]
+    workspace $wF3 output HDMI-A-1
+
+    set $wsF4  [Postman]
+    assign [class="Postman"] workspace $wsF4
+    set $wsF5  15:15
+    set $wsF6  16:16
+    set $wsF7  17:17
+    set $wsF8  18:
+    set $wsF9  19:19
+    set $wsF10 20:20
+    set $wsF11 21:
+    set $wsF12 22:
+
     # Switch to workspace
-    bindsym $mod+1 workspace $ws1
-    bindsym $mod+2 workspace $ws2
-    bindsym $mod+3 workspace $ws3
-    bindsym $mod+4 workspace $ws4
-    bindsym $mod+5 workspace $ws5
-    bindsym $mod+6 workspace $ws6
-    bindsym $mod+7 workspace number 7
-    bindsym $mod+8 workspace number 8
-    bindsym $mod+9 workspace $ws9
-    bindsym $mod+0 workspace $ws10
+    bindsym --to-code $mod+1 workspace $ws1
+    bindsym --to-code $mod+2 workspace $ws2
+    bindsym --to-code $mod+3 workspace $ws3
+    bindsym --to-code $mod+4 workspace $ws4
+    bindsym --to-code $mod+5 workspace $ws5
+    bindsym --to-code $mod+6 workspace $ws6
+    bindsym --to-code $mod+7 workspace $ws7
+    bindsym --to-code $mod+8 workspace $ws8
+    bindsym --to-code $mod+9 workspace $ws9
+    bindsym --to-code $mod+0 workspace $ws10
+    bindsym --to-code $mod+F1 workspace $wsF1
+    bindsym --to-code $mod+F2 workspace $wsF2
+    bindsym --to-code $mod+F3 workspace $wsF3
+    bindsym --to-code $mod+F4 workspace $wsF4
+    bindsym --to-code $mod+F5 workspace $wsF5
+    bindsym --to-code $mod+F6 workspace $wsF6
+    bindsym --to-code $mod+F7 workspace $wsF7
+    bindsym --to-code $mod+F8 workspace $wsF8
+    bindsym --to-code $mod+F9 workspace $wsF9
+    bindsym --to-code $mod+F10 workspace $wsF10
+    bindsym --to-code $mod+F11 workspace $wsF11
+    bindsym --to-code $mod+F12 workspace $wsF12
     # Move focused container to workspace
-    bindsym $mod+Shift+1 move container to workspace $ws1
-    bindsym $mod+Shift+2 move container to workspace $ws2
-    bindsym $mod+Shift+3 move container to workspace $ws3
-    bindsym $mod+Shift+4 move container to workspace $ws4
-    bindsym $mod+Shift+5 move container to workspace $ws5
-    bindsym $mod+Shift+6 move container to workspace $ws6
-    bindsym $mod+Shift+7 move container to workspace number 7
-    bindsym $mod+Shift+8 move container to workspace number 8
-    bindsym $mod+Shift+9 move container to workspace $ws9
-    bindsym $mod+Shift+0 move container to workspace $ws10
-    # Note: workspaces can have any name you want, not just numbers.
-    # We just use 1-10 as the default.
+    bindsym --to-code $mod+Shift+1 move container to workspace $ws1
+    bindsym --to-code $mod+Shift+2 move container to workspace $ws2
+    bindsym --to-code $mod+Shift+3 move container to workspace $ws3
+    bindsym --to-code $mod+Shift+4 move container to workspace $ws4
+    bindsym --to-code $mod+Shift+5 move container to workspace $ws5
+    bindsym --to-code $mod+Shift+6 move container to workspace $ws6
+    bindsym --to-code $mod+Shift+7 move container to workspace $ws7
+    bindsym --to-code $mod+Shift+8 move container to workspace $ws8
+    bindsym --to-code $mod+Shift+9 move container to workspace $ws9
+    bindsym --to-code $mod+Shift+0 move container to workspace $ws10
+    bindsym --to-code $mod+Shift+F1 move container to workspace $wsF1
+    bindsym --to-code $mod+Shift+F2 move container to workspace $wsF2
 #
 # Layout stuff:
 #
     # You can "split" the current object of your focus with
     # $mod+b or $mod+v, for horizontal and vertical splits
     # respectively.
-    bindsym $mod+b splith
-    bindsym $mod+v splitv
+    bindsym --to-code $mod+b splith
+    bindsym --to-code $mod+v splitv
 
     # Switch the current container between different layout styles
-    bindsym $mod+s layout stacking
-    bindsym $mod+w layout tabbed
-    bindsym $mod+e layout toggle split
+    bindsym --to-code $mod+s layout stacking
+    bindsym --to-code $mod+w layout tabbed
+    bindsym --to-code $mod+e layout toggle split
 
     # Make the current focus fullscreen
-    bindsym $mod+f fullscreen
+    bindsym --to-code $mod+f fullscreen
 
     # Toggle the current focus between tiling and floating mode
-    bindsym $mod+space floating toggle
+    bindsym --to-code $mod+space floating toggle
 
     # Swap focus between the tiling area and the floating area
-    bindsym $mod+t focus mode_toggle
+    bindsym --to-code $mod+t focus mode_toggle
 
     # Move focus to the parent container
-    bindsym $mod+a focus parent
+    bindsym --to-code $mod+a focus parent
 #
 # Scratchpad:
 #
@@ -173,11 +221,11 @@ bindsym $mod+Shift+e mode "exit: [l]ock, [s]leep, [r]eboot, shift+[s]hutdown, sh
     # You can send windows there and get them back later.
 
     # Move the currently focused window to the scratchpad
-    bindsym $mod+Shift+minus move scratchpad
+    bindsym --to-code $mod+Shift+minus move scratchpad
 
     # Show the next scratchpad window or hide the focused scratchpad window.
     # If there are multiple scratchpad windows, this command cycles through them.
-    bindsym $mod+minus scratchpad show
+    bindsym --to-code $mod+minus scratchpad show
 #
 # Resizing containers:
 #
@@ -186,48 +234,47 @@ mode "resize" {
     # right will grow the containers width
     # up will shrink the containers height
     # down will grow the containers height
-    bindsym $left resize shrink width 10px
-    bindsym $down resize grow height 10px
-    bindsym $up resize shrink height 10px
-    bindsym $right resize grow width 10px
+    bindsym --to-code $left resize shrink width 10px
+    bindsym --to-code $down resize grow height 10px
+    bindsym --to-code $up resize shrink height 10px
+    bindsym --to-code $right resize grow width 10px
 
     # Ditto, with arrow keys
-    bindsym Left resize shrink width 10px
-    bindsym Down resize grow height 10px
-    bindsym Up resize shrink height 10px
-    bindsym Right resize grow width 10px
+    bindsym --to-code Left resize shrink width 10px
+    bindsym --to-code Down resize grow height 10px
+    bindsym --to-code Up resize shrink height 10px
+    bindsym --to-code Right resize grow width 10px
 
     # Return to default mode
-    bindsym Return mode "default"
-    bindsym Escape mode "default"
+    bindsym --to-code Return mode "default"
+    bindsym --to-code Escape mode "default"
 }
-bindsym $mod+r mode "resize"
+bindsym --to-code $mod+r mode "resize"
 
-#
-# Assignment
-# 
-
-assign [class="org.mozilla.firefox"] workspace $ws1
-assign [class="chromium-browser"] workspace $ws1
-
-assign [class="jetbrains-rider"] workspace $ws3
-assign [class="obsidian"] workspace $ws4
-assign [class="TelegramDesktop"] workspace $ws9
-assign [class="qBittorrent"] workspace $ws10
 
 #
 # Autostart
 #
 
-bindsym $mod+Shift+v exec "~/.vim-anywhere/bin/run"
+bindsym --to-code $mod+Shift+v exec "~/.vim-anywhere/bin/run"
 
 # Nightlight
-exec "gammastep -m wayland -t 6500:3500"
+exec "gammastep -l 52.723598:41.442307 -m wayland"
 exec "darkman run"
 exec udiskie
-exec fcitx5
 # sync things
 exec syncthing
+
+#
+# Input/keyboard
+#
+# exec fcitx5
+input * {
+        xkb_layout "us,ru"
+        xkb_options "grp:win_space_toggle"
+}
+
+input <identifier> xkb_model "pc101"
 
 #
 # Background
@@ -237,31 +284,17 @@ exec swaybg  -m center -i ~/Pictures/Wallpaper/vqt4fvzjca4a1.jpg -c "#000000"
 # Calculator
 for_window [app_id="galculator"] floating enable, border normal, move position cursor
 
-# bar {
-#     position top
-#     swaybar_command waybar
-# }
+#
+# Notifications
+#
+# Show all notification
+#bindsym --to-code $mod+Shift+n exec dunstctl history-pop
+exec swaync
+bindsym --to-code $mod+Shift+n exec swaync-client -t -sw
 
-# Include configs from 3 locations:
-#  - /usr/share/sway/config.d
-#  - /etc/sway/config.d
-#  - $XDG_CONFIG_HOME/sway/config.d ($HOME/.config/sway/config.d)
-#
-# If multiple directories contain the files with the same name, the later
-# directory takes precedence; `$XDG_CONFIG_HOME/sway/config.d/20-swayidle.conf`
-# will always be loaded instead of `/usr/share/sway/config.d/20-swayidle.conf`
-# or `/etc/sway/config.d/20-swayidle.conf`
-#
-# This mechanism permits overriding our default configuration per-system
-# (/etc) or per-user ($XDG_CONFIG_HOME) basis. Just create the file you
-# want to modify/override in the higher-level directory.
-#
-# For example, to disable the default bar from Fedora configs, you'll need to
-#     $ echo -n > "$HOME/.config/sway/config.d/90-bar.conf"
-#
-# Note the quoting, the $() and the arguments quoting. All the parts are equally
-# important to make the magic work. And if you want to learn the secret behind
-# the trick, it's all in the `wordexp(3)`.
-#
-# include '$(/usr/libexec/sway/layered-include "/usr/share/sway/config.d/*.conf" "/etc/sway/config.d/*.conf" "${XDG_CONFIG_HOME:-$HOME/.config}/sway/config.d/*.conf")'
+# clipboard
+exec copyq --start-server
+bindsym --to-code $mod2+v exec copyq show
+for_window [class="copyq"] floating enable
+
 include ~/.config/sway/config.d/*
